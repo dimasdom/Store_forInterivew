@@ -1,0 +1,19 @@
+﻿@using Store.Models.Order
+@model List<OrderModel>
+<div class="container">
+    <p class="display-4 text-center">@User.Identity.Name's Orders</p>
+    @foreach(OrderModel order in Model)
+            {
+                <div class="row p-4 m-4 border shadow">
+                    <div class="col">
+                        @order.Date
+                    </div>
+                    <div class="col">
+                        @order.Status
+                    </div>
+                    <div class="col">
+                        <a asp-action="OrderDetails" asp-controller="Shop" asp-route-id="@order.Id">Details</a>
+                    </div>
+                </div>
+            }
+</div>

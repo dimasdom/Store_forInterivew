@@ -1,0 +1,23 @@
+﻿@using Store.Models.Order
+@model List<OrderModel>
+
+<div class="container">
+    @foreach (OrderModel order in Model)
+    {
+    <div class="row p-4 m-4 border shadow">
+        <div class="col">
+            @order.Date
+        </div>
+        <div class="col">
+            @order.UserId
+        </div>
+        <div class="col">
+            @order.Sum
+        </div>
+        <div class="col">
+            <a asp-action="OrderDetails" asp-controller="Shop" asp-route-id="@order.Id">Details</a>
+        </div>
+    </div>
+    }
+
+</div>

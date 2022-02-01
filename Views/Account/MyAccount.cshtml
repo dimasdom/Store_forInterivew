@@ -1,0 +1,25 @@
+﻿@model Store.Models.User.UserModel
+
+<div class="container m-auto">
+    <li class="list-group-item m-1">
+            <a asp-action="ChangeAccData">Change some information</a>
+        </li>
+    <ul class="list-group m-auto">
+        <li class="list-group-item m-1">
+            @Model.First_name
+        </li>
+        <li class="list-group-item m-1">
+            @Model.Second_name
+        </li>
+        <li class="list-group-item m-1">
+            @Model.UserName
+        </li>
+        <li class="list-group-item m-1">
+            @Model.Email
+        </li>
+        <li class="list-group-item m-1">
+            @Model.Address
+        </li>
+
+    </ul>
+</div>

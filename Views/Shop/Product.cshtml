@@ -1,0 +1,63 @@
+﻿@using Store.Models.Goods 
+@model Store.Models.DTOs.ProductModel
+<div class="containe m-auto">
+    <p class="text-center display-4">@Model.Goods.Name</p>
+    <div class="row">
+        <div class="col-6">
+            <img class="rounded shadow-lg" src="@Model.Goods.Image" />
+        </div>
+        <div class="col-6">
+            <p>@Model.Goods.Name</p>
+            <p>@Model.Goods.Count</p>
+            <p>@Model.Goods.Description</p>
+            <p>@Model.Goods.Price</p>
+            <a asp-action="AddToCart" asp-controller="Shop" asp-route-id="@Model.Goods.Id" class="btn btn-primary">Add To Cart</a>
+        </div>
+
+    </div>
+    <div class="row p-4 m-4 ">
+        <form asp-action="CreateComment" asp-controller="Shop">
+            <div class="col-1" style="visibility:hidden">
+                <input name="Id" value="@Model.Goods.Id" />
+            </div>
+            <div class="col">
+                <input class="input-group-text" name="Text" />
+            </div>
+            <div class="col">
+                <input class="btn btn-primary" type="submit" value="Comment" />
+            </div>
+
+
+
+        </form>
+    </div>
+    <div class="mt-4 m-auto">
+        @if (Model.Comments.Count > 0)
+        {
+            foreach (CommentModel comment in Model.Comments)
+            {
+                <div class="row p-2 m-2 border rounded">
+                    <div class="col">
+                        <p>@comment.UserName</p>
+                    </div>
+                    <div class="col">
+                        <p>@comment.CommentText</p>
+                    </div>
+                    <div class="col">
+                        <p>@comment.Date</p>
+                    </div>
+
+
+                   
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="col">
+                            <a asp-action="DeleteComment" asp-controller="Shop" asp-route-Id="@comment.Id">Delete</a>
+                        </div>
+
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

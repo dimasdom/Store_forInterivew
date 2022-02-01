@@ -1,0 +1,31 @@
+﻿@model Store.Models.Goods.GoodsModel
+
+<div class="container m-auto w-50">
+    <form asp-controller="Shop" asp-action="Edit" method="post">
+        <div class="input-group mb-3">
+
+            <input asp-for="Name" value="@Model.Name" type="text" class="form-control" placeholder="Product Name" >
+        </div>
+        <div class="input-group mb-3">
+            <p>Category ID : @Model.CategoryId</p>
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Count" value="@Model.Count" type="text" class="form-control " placeholder="Count" >
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Description" value="@Model.Description" type="text" class="form-control" >
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Image" value="@Model.Image" type="text" class="form-control" >
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Price" value="@Model.Price" type="number" class="form-control" >
+        </div>
+        <input type="submit" value="Submit" class="btn btn-success" />
+        </form>
+        <a class="btn btn-danger" asp-action="DeleteGoods" asp-controller="Shop" asp-route-id="@Model.Id">Delete @Model.Name</a>
+</div>

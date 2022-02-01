@@ -1,0 +1,51 @@
+﻿@using Store.Models.Goods
+@model Store.Models.DTOs.OrderDetailsModel
+<div class="container m-auto">
+    <div class="row">
+        <div class="col-12 col-lg-7">
+            @foreach (GoodsModel goods in Model.Goods)
+            {
+            <div class="row m-2 p-1 border">
+                <div class="col-4">
+                    <img class="img-fluid rounded" style="height:100px" src="@goods.Image" />
+                </div>
+                <div class="col-4">
+                    <p>@goods.Name</p>
+                </div>
+                <div class="col-4">
+                    <p>@goods.Price</p>
+                </div>
+                
+            </div>
+            }
+        </div>
+        <div class="col-12 col-lg-5">
+            <p>@Model.OrderDetails.Date</p>
+            <p>@Model.OrderDetails.Sum</p>
+            <p>@Model.OrderDetails.Address</p>
+            @if (User.IsInRole("admin"))
+            {
+        <form asp-action="ChangeOrderStatus" asp-controller="Admin">
+            <div class="input-group mt-4">
+                <input value="@Model.OrderDetails.Id" name="Id" style="opacity:0" />
+            </div>
+
+            <div class="input-group mt-4">
+                <input class="input-group-text" name="Status" value="@Model.OrderDetails.Status" />
+            </div>
+            <div class="input-group mt-4">
+                <input class="btn btn-light" type="submit" value="Change Order Status" />
+            </div>
+            
+        </form>
+            }
+            else
+            {
+                <p>@Model.OrderDetails.Status</p>
+            }
+
+
+        </div>
+    </div>
+    
+</div>

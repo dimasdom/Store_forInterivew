@@ -1,0 +1,31 @@
+﻿@model Store.Models.Goods.GoodsModel
+
+
+<div class="container m-auto w-50 mt-4">
+    <form asp-controller="Shop" asp-action="Create" method="post">
+        <div class="input-group mb-3">
+
+            <input asp-for="Name"  type="text" class="form-control" placeholder="Product Name">
+        </div>
+        <div class="input-group mb-3">
+            <select class="custom-select" asp-for="CategoryId" asp-items="ViewBag.Categories" ></select>
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Count"  type="text" class="form-control" placeholder="Count" >
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Description"  type="text" class="form-control" placeholder="Description" >
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Image"  type="text" class="form-control" placeholder="Image URL" >
+        </div>
+        <div class="input-group mb-3">
+
+            <input asp-for="Price" type="number" class="form-control" placeholder="Price" >
+        </div>
+        <input type="submit" value="Submit" class="btn btn-success" />
+        </form>
+</div>

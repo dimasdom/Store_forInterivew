@@ -1,0 +1,74 @@
+﻿@using Store.Models.Goods
+@model List<GoodsModel> 
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       Search Params
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row">
+                        <form asp-action="Goods" asp-controller="Shop" method="post">
+                           
+                                <select class="custom-select m-4" name="Id" asp-items="ViewBag.Categories"></select>
+                            
+                            
+                                <select class="custom-control m-4" name="Sort">
+                                    <option selected value="low">
+                                       Order By
+                                    </option>
+                                    <option value="high">
+                                        Order By Descending
+                                    </option>
+                                </select>
+                           
+                                <input class="m-4" placeholder="Minimal Price" name="Min" />
+                            
+                                <input class="m-4" placeholder="Maximum Price" name="Max" />
+                           
+                                <input class="m-4" type="submit" value="Search" />
+                         
+                            
+                            
+                           
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+
+            @foreach (GoodsModel goods in Model)
+            {
+                if (goods.Count > 0)
+                {
+                    <div class="col-12 col-lg-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="@goods.Image" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <a asp-action="Product" asp-controller="Shop" asp-route-id="@goods.Id">
+                                    <h5 class="card-title">@goods.Name</h5>
+                                </a>
+                                <p class="card-text">Price : @goods.Price</p>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <a asp-action="Edit" asp-controller="Shop" asp-route-id="@goods.Id" class="btn btn-danger">Edit</a>
+                                }
+                                <a asp-action="AddToCart" asp-controller="Shop" asp-route-id="@goods.Id" class="btn btn-primary">Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
